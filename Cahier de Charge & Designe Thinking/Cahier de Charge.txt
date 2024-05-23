@@ -1,0 +1,49 @@
+Titre du Projet : Site Web Touristique de Tanger
+
+Aperçu du Projet :
+Le projet vise à développer un site Web complet mettant en vedette les attractions touristiques, les restaurants célèbres et les lieux culturels à Tanger, au Maroc. Le site servira de guide pour les touristes visitant la ville, en fournissant des informations et des recommandations sur les endroits à visiter, où manger, et découvrir la culture locale.
+
+Objectifs du Projet :
+
+Fournir aux touristes une interface conviviale pour explorer les attractions touristiques, les restaurants, et les lieux culturels à Tanger.
+Offrir des informations détaillées sur chaque attraction, y compris des descriptions, des photos, des horaires d'ouverture, et des coordonnées.
+Permettre aux utilisateurs de rechercher des attractions et des restaurants par catégories, telles que les sites historiques, les parcs, les cafés, et plus encore.
+Mettre en place des cartes interactives pour afficher les emplacements des attractions touristiques, des restaurants et des lieux culturels.
+Autoriser les utilisateurs à laisser des avis et des notes po‬ur les attractions et les restaurants pour aider les autres touristes à prendre des décisions éclairées.
+Promouvoir les entreprises locales et les institutions culturelles en les présentant sur le site.
+Portée :
+Le projet impliquera le développement des composants frontend et backend du site Web. Il inclura la création de schémas de base de données pour stocker les données des attractions et des restaurants, la conception d'interfaces utilisateur pour la navigation et la recherche, et la mise en œuvre de fonctionnalités pour les avis et les notes des utilisateurs.
+
+Exigences Fonctionnelles :
+
+Attractions Touristiques :
+Afficher une liste des attractions touristiques à Tanger avec des informations détaillées pour chaque attraction.
+Inclure des catégories telles que les sites historiques, les musées, les plages, les parcs, et plus encore.
+Restaurants :
+Mettre en avant les restaurants célèbres à Tanger avec des descriptions, des menus, et des coordonnées.
+Permettre aux utilisateurs de filtrer les restaurants par type de cuisine, gamme de prix et emplacement.
+Lieux Culturels :
+Mettre en avant des lieux culturels tels que les théâtres, les galeries d'art, et les lieux de musique avec des événements et des horaires.
+Fournir des informations sur les événements culturels, les expositions, et les performances à Tanger.
+Recherche et Filtrage :
+Mettre en œuvre une fonctionnalité de recherche pour que les utilisateurs puissent trouver des attractions, des restaurants et des lieux culturels par mots-clés ou catégories.
+Permettre aux utilisateurs de filtrer les résultats de recherche en fonction de critères tels que l'emplacement, le classement et la popularité.
+Cartes Interactives :
+Intégrer des cartes interactives pour afficher les emplacements des attractions touristiques, des restaurants, et des lieux culturels.
+Permettre aux utilisateurs de voir les directions et de naviguer vers leurs destinations choisies.
+Avis et Notes des Utilisateurs :
+Permettre aux utilisateurs de laisser des avis et des notes pour les attractions et les restaurants.
+Afficher les notes moyennes et les avis pour chaque annonce pour aider les utilisateurs à prendre des décisions.
+
+
+Technologies Utilisées :
+Html, CSS , Boostrap, php , mysQL , Figma 
+
+Modèles et Conceptions :
+[Inclure des maquettes visuelles pour représenter la disposition et la conception des pages du site.]
+
+
+
+Approbation :
+Ce document de spécifications nécessite l'approbation des parties prenantes avant de procéder au développement du site.
+

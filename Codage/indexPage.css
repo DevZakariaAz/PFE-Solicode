@@ -172,3 +172,24 @@ h2 {
     font-weight: 700;
     color: #333;
 }
+.explore-section {
+    background-color: #f8f9fa;
+    padding: 60px 0;
+}
+
+.restaurants {
+    background: rgb(11, 66, 61);
+    /* Fallback background color */
+    background: linear-gradient(0deg, rgba(11, 66, 61, 1) 0%, rgba(11, 133, 117, 1) 35%, rgb(104, 24, 24) 100%);
+    /* Gradient background */
+    background-image: url(./img/BackGround\ image.png);
+    /* Ensure the correct path to the image */
+    background-blend-mode: overlay;
+    /* Optional: to blend the image with the gradient */
+    background-size: cover;
+    /* Optional: to cover the entire element */
+    background-position: center;
+    /* Optional: to center the background image */
+}
+
+

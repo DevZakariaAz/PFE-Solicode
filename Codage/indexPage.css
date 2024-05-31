@@ -191,5 +191,86 @@ h2 {
     background-position: center;
     /* Optional: to center the background image */
 }
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.subscription-section {
+    background-color: #00A896;
+    color: white;
+}
+
+.subscription-section h2 {
+    font-weight: 700;
+}
+
+.form-inline .form-control {
+    border: 2px solid #006D77;
+    border-radius: 0;
+}
+
+.btn-primary {
+    background-color: #006D77;
+    border-color: #006D77;
+}
+
+.comments-section {
+    background-color: #E9ECEF;
+}
+
+.comment-box {
+    background-color: #0B423D;
+    color: white;
+    border-radius: 10px;
+    position: relative;
+}
+
+.comment-box h3 {
+    font-weight: 700;
+}
+
+.blockquote {
+    margin: 0;
+}
+
+.blockquote-footer {
+    color: #B0B0B0;
+}
+
+.navigation-arrows {
+    position: absolute;
+    bottom: 0px;
+    left: 10px;
+    }
+
+.arrow a {
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+.pagination-dots {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
+.comment-image {
+    width: 200px; /* Set your desired width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px;
+}
 
 

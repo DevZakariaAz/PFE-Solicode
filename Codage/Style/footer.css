@@ -1,7 +1,19 @@
 .footer-logo {
     margin-bottom: 20px;
 }
-
+.imagepattern2 {
+    height: 40px;
+    background-image: url('../img/Patterns.png');
+    /* Ensure this path is correct */
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    /* Make sure it covers the full width */
+    margin-bottom: 20px;
+    position: relative;
+    bottom: 40px;
+    /* transform: rotate(180deg); */
+}
 .footer-logo img {
     max-width: 200px;
     justify-content: left;

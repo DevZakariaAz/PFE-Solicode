@@ -238,6 +238,7 @@ body {
     position: relative;
     z-index: 2;
     background-image: url(../img/BackGround\ image.png);
+    opacity: 100%;
     color: white;
     /* Add other styles for the content */
 }

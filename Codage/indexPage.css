@@ -286,7 +286,7 @@ body {
         /* gap: 71px; */
     
         width: 524px;
-        height: 630px;
+        height: 640px;
     
         /* Dark text color */
         background: #002A2E;
@@ -332,22 +332,27 @@ body {
 
 .navigation-arrows {
     position: absolute;
-    bottom: 0px;
-    left: 10px;
+    bottom: 30px;
+    /* Adjust to move above the dots */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .arrow a {
     cursor: pointer;
     font-size: 24px;
-    color: white;
+    color: #ffffff;
     margin: 0 10px;
     text-decoration: none;
 }
 
 .pagination-dots {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
 }
 
 .dot {
@@ -355,7 +360,7 @@ body {
     width: 10px;
     height: 10px;
     margin: 0 5px;
-    background-color: white;
+    background-color: #ffffff;
     border-radius: 50%;
     cursor: pointer;
 }
@@ -364,7 +369,7 @@ body {
 .comment-image {
     width: 524px;
     /* Set your desired width */
-    height: 630px;
+    height: 640px;
     /* Set your desired height */
     border-radius: 10px;
     background: url('./img/best comments.jpg') no-repeat center center;
@@ -392,7 +397,15 @@ body {
     height: 500px;
     margin-right: 40px;
 }
+.Best_comments{
+    position: relative;
+    bottom: 40px;
 
+}
+.blockquote{
+    position: relative;
+    bottom: 60px;
+}
 .lead {
     font-size: 15px;
 }

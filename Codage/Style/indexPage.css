@@ -212,10 +212,11 @@ body {
     position: relative;
     background: rgb(11, 110, 102);
     /* background: linear-gradient(0deg, rgba(11, 66, 61, 1) 0%, rgba(11, 133, 117, 1) 35%, rgb(104, 24, 24) 100%); */
-    background-image: url(./img/BackGround\ image.png);
+    background-image: url(../img/BackGround\ image.png);
     background-size: cover;
     background-position: center;
     z-index: 1;
+    
     /* Add necessary padding, height, or other styles */
     padding: 100px 0;
 }
@@ -236,8 +237,7 @@ body {
 .restaurants .content {
     position: relative;
     z-index: 2;
-    background-image: url(./img/BackGround\ image.png);
-    opacity: 100%;
+    background-image: url(../img/BackGround\ image.png);
     color: white;
     /* Add other styles for the content */
 }
@@ -271,7 +271,7 @@ body {
 /* Additional styles for the image pattern */
 .imagepattern {
     height: 40px;
-    background-image: url('./img/Patterns.png');
+    background-image: url('../img/Patterns.png');
     /* Ensure this path is correct */
     background-size: cover;
     background-repeat: no-repeat;
@@ -285,7 +285,7 @@ body {
 
 .imagepattern2 {
     height: 40px;
-    background-image: url('./img/Patterns.png');
+    background-image: url('../img/Patterns.png');
     /* Ensure this path is correct */
     background-size: cover;
     background-repeat: no-repeat;
@@ -404,7 +404,7 @@ body {
     height: 640px;
     /* Set your desired height */
     border-radius: 10px;
-    background: url('./img/best comments.jpg') no-repeat center center;
+    background: url('../img/best comments.jpg') no-repeat center center;
     background-size: cover;
     /* Ensure the image covers the entire area */
     position: relative;

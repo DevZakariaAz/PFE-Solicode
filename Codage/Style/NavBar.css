@@ -1,62 +1,32 @@
-/* NavBar.css */
-
-/* Ensure the navbar brand image (logo) has some padding if needed */
-.navbar-brand img {
-    max-height: 40px;
-    /* Adjust the height of the logo */
-    margin-right: 10px;
-    /* Space between the logo and the text (if any) */
+body {
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
-/* Align the navigation links to the right */
-.navbar-nav {
-    margin-left: auto;
-    margin-right: 190px;
-    /* Adjust the margin as needed */
-}
-
-/* Style the navigation links */
-.navbar-nav .nav-link {
-    font-size: 16px;
-    /* Adjust the font size */
-    padding-right: 20px;
-    /* Space between the links */
-    padding-left: 20px;
-    /* Space between the links */
-    color: #006D77;
-    /* Default link color */
-}
-
-
-.navbar-nav .nav-link:hover {
-    color: #007bff;
-    /* Color on hover */
-}
-
-/* Style the active navigation link */
-.navbar-nav .nav-item.active .nav-link {
-    color: #006D77;
-    /* Active link color */
-}
-
-/* Add padding to the navbar */
 .navbar {
-    padding: 10px 20px;
-    /* Adjust as needed */
-}
-
-/* Customize the background color of the navbar */
-.navbar-light {
     background-color: #f8f9fa;
-    /* Light gray background */
 }
 
-/* Responsive adjustments */
-@media (max-width: 992px) {
-    .navbar-nav .nav-link {
-        padding-right: 10px;
-        /* Reduce padding on smaller screens */
-        padding-left: 10px;
-        /* Reduce padding on smaller screens */
-    }
+.navbar-nav {
+    margin-right: 70px;
+}
+
+.row input {
+    border-color: #006D77;
+    color: #006D77;
+}
+
+.img-fluid {
+    border-radius: 10px 10px 10px 100px;
+    margin-bottom: 100px;
+}
+
+.row p {
+    font-style: italic;
+    font-weight: 700
+}
+
+.nav-link {
+    font-size: 18px;
+    text-transform: capitalize;
+    color: #006D77;
 }

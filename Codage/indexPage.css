@@ -210,8 +210,8 @@ body {
 
 .restaurants {
     position: relative;
-    background: rgb(11, 66, 61);
-    background: linear-gradient(0deg, rgba(11, 66, 61, 1) 0%, rgba(11, 133, 117, 1) 35%, rgb(104, 24, 24) 100%);
+    background: rgb(11, 110, 102);
+    /* background: linear-gradient(0deg, rgba(11, 66, 61, 1) 0%, rgba(11, 133, 117, 1) 35%, rgb(104, 24, 24) 100%); */
     background-image: url(./img/BackGround\ image.png);
     background-size: cover;
     background-position: center;
@@ -227,7 +227,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0.992) -10%, rgba(0, 109, 119, 0.405) 40%, rgb(255, 255, 255) 100%);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.992) 0%, rgba(0, 109, 119, 0.563) 15%,
+        rgba(0, 109, 119, 0.649) 80%, rgb(255, 255, 255) 100%);
     /* Use RGBA to set color with opacity */
     z-index: -1;
 }
@@ -236,7 +237,7 @@ body {
     position: relative;
     z-index: 2;
     background-image: url(./img/BackGround\ image.png);
-    opacity: 20%;
+    opacity: 100%;
     color: white;
     /* Add other styles for the content */
 }
@@ -248,6 +249,8 @@ body {
 .subscription-section {
     background-color: #00A896;
     color: white;
+    padding: 50px 0;
+    margin-top: 20px;
 }
 
 .subscription-section h2 {
@@ -257,6 +260,7 @@ body {
 .form-inline .form-control {
     border: 2px solid #006D77;
     border-radius: 0;
+    margin-right: 10px;
 }
 
 .btn-primary {
@@ -264,9 +268,38 @@ body {
     border-color: #006D77;
 }
 
-.comments-section {
-    background-color: #E9ECEF;
+/* Additional styles for the image pattern */
+.imagepattern {
+    height: 40px;
+    background-image: url('./img/Patterns.png');
+    /* Ensure this path is correct */
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    /* Make sure it covers the full width */
+    margin-top: 20px;
+    position: relative;
+    top: 50px;
+    transform: rotate(180deg);
 }
+
+.imagepattern2 {
+    height: 40px;
+    background-image: url('./img/Patterns.png');
+    /* Ensure this path is correct */
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    /* Make sure it covers the full width */
+    margin-bottom: 20px;
+    position: relative;
+    bottom: 40px;
+    /* transform: rotate(180deg); */
+}
+
+.comments-section {
+    background-color: #ffffff;
+}   
 
 .comment-box {
     background-color: #0B423D;
@@ -302,7 +335,7 @@ body {
         align-items: flex-start;
         padding: 0px;
     
-        width: 1083px;
+        width: auto;
         height: 646px;
     
         border-radius: 24px;
@@ -365,7 +398,6 @@ body {
     cursor: pointer;
 }
 
-
 .comment-image {
     width: 524px;
     /* Set your desired width */
@@ -415,7 +447,7 @@ body {
 }
 
 .testimonial-section {
-    background-color: #bababa;
+    background-color: #ffffff;
 }
 
 .section-title {
@@ -470,3 +502,72 @@ body {
 /* Frame 58 */
 
 /* Auto layout */
+.footer {
+    background-color: #006D77;
+    padding: 40px 0;
+    color: #fff;
+    /* text-align: center; */
+    position: relative;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-logo {
+    margin-bottom: 20px;
+}
+
+.footer-logo img {
+    max-width: 200px;
+    justify-content: left;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: right;
+    gap: 50px;
+    margin-bottom: 30px;
+}
+
+.footer-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.footer-nav a:hover {
+    color: #ffdd57;
+}
+
+.footer-social {
+    display: flex;
+    justify-content: right;
+    gap: 40px;
+    margin-bottom: 20px;
+}
+
+.footer-social a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.footer-social a:hover {
+    color: #ffdd57;
+}
+
+.footer-credit {
+    font-size: 18px;
+    margin-top: 20px;
+    
+}
+
+.footer-credit p {
+    margin: 0;
+    color: #fff;
+}

@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up Page</title>
-    <link rel="stylesheet" href="./Style/login.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
+    <link rel="stylesheet" href="./Style/SignUp.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <section class="signup-section">
@@ -25,19 +24,19 @@
                     <h2>Sign Up</h2>
                     <div class="form-group">
                         <label for="email"><i class="fas fa-envelope"></i></label>
-                        <input type="email" id="email" placeholder="Your email">
+                        <input type="email" id="email" name="email" placeholder="Your email">
                     </div>
                     <div class="form-group">
                         <label for="username"><i class="fas fa-user"></i></label>
-                        <input type="text" id="username" placeholder="User name">
+                        <input type="text" id="username" name="username" placeholder="User name">
                     </div>
                     <div class="form-group">
                         <label for="password"><i class="fas fa-key"></i></label>
-                        <input type="password" id="password" placeholder="Password">
+                        <input type="password" id="password" name="password" placeholder="Password">
                     </div>
                     <div class="form-group">
                         <label for="repeat-password"><i class="fas fa-key"></i></label>
-                        <input type="password" id="repeat-password" placeholder="Repeat Password">
+                        <input type="password" id="repeat-password" name="repeat-password" placeholder="Repeat Password">
                     </div>
                     <button type="submit" class="btn">Sign Up</button>
                 </form>

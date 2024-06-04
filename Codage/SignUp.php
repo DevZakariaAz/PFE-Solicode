@@ -16,7 +16,7 @@
                     <footer>- Steve Jobs</footer>
                 </blockquote>
                 <div class="logo">
-                    <img src="./img/LogoTnagorroco.png" alt="Logo">
+                    <img src="./img/LogoTnagorroco-removebg-preview.png" alt="Logo">
                 </div>
             </div>
             <div class="right-side">

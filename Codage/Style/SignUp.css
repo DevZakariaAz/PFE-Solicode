@@ -89,8 +89,8 @@ body {
 }
 .logo img {
     width: 100%;
-    max-width: 500px;
-    height: 200px;
+    max-width: 700px;
+    height: 300px;
 
 }
 
@@ -155,4 +155,34 @@ body {
 
 .right-side a:hover {
     text-decoration: underline;
+}
+.login-section{
+position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    z-index: 0;
+}
+.login-section::after {
+    content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #006d7741;
+        z-index: -1;
+}
+
+.login-section::before {
+    content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('../img/BackGround image.png') center/cover no-repeat;
+        opacity: 40%;
+        z-index: -2;
 }

@@ -16,11 +16,6 @@ body {
     color: #006D77;
 }
 
-.img-fluid {
-    border-radius: 10px 10px 10px 100px;
-    margin-bottom: 100px;
-}
-
 .row p {
     font-style: italic;
     font-weight: 700
@@ -51,9 +46,10 @@ body {
 /* Animation for the image */
 .img-fluid {
     border-radius: 10px 10px 10px 100px;
-    animation: rotateImage 7s linear infinite;
+    /* animation: rotateImage 7s linear infinite; */
+    height: 500px;
 }
-
+/* 
 @keyframes rotateImage {
     0% {
         transform: rotate(0deg);
@@ -66,7 +62,7 @@ body {
     100% {
         transform: rotate(-5deg);
     }
-}
+} */
 
 /* Animation for the sections */
 .featured-destination {
@@ -126,6 +122,7 @@ body {
 .card-img-top {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    height: 400px;
 }
 
 .card-body {
@@ -519,10 +516,11 @@ body {
 
 .footer-logo {
     margin-bottom: 20px;
+        width: 400px;
 }
 
 .footer-logo img {
-    max-width: 200px;
+    width: 400px;
     justify-content: left;
 }
 

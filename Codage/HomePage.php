@@ -47,7 +47,7 @@
                 <p class="mt-3">Still deciding where to go? <a href="#" class="head1">Explore destinations</a></p>
             </div>
             <div class="col-md-6 text-center">
-                <img src="./img/Miramonte.pnj.jpg" class="img-fluid" alt="Tangier">
+                <img src="./img/Tanger.png" class="img-fluid" width="600"  alt="Tangier">
             </div>
         </div>
     </div>
@@ -55,10 +55,12 @@
     <section class="featured-destination py-5">
         <div class="container">
             <h2 class="text-center mb-4">Featured destination</h2>
-            <div class="row">
+            <div class="cardsDst">
+                <div class="row">
+                
                 <div class="col-md-4">
                     <div class="card mb-4">
-                        <img src="./img/RR Ice.webp" class="card-img-top" alt="Cap Spartel">
+                        <img src="./img/Old Madena.png"  class="card-img-top" alt="Old Medina">
                         <div class="card-body">
                             <h5 class="card-title"><i class="fa fa-map-marker"></i> Cap Spartel</h5>
                             <p class="card-text">Tourist Place</p>
@@ -69,7 +71,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card mb-4">
-                        <img src="./img/RR Ice.webp" class="card-img-top" alt="Old Medina">
+                        <img src="./img/Cap Spartel.png" class="card-img-top" alt="Old Medina">
                         <div class="card-body">
                             <h5 class="card-title"><i class="fa fa-map-marker"></i> Old Medina</h5>
                             <p class="card-text">Tourist Place</p>
@@ -93,6 +95,7 @@
             <div class="text-center">
                 <a href="#" class="btn btn-secondary">Discover more destinations</a>
             </div>
+        </div>
         </div>
     </section>
     <!-- Main Section -->
@@ -263,7 +266,7 @@
         <div class="container">
             
                 <div class="footer-logo">
-                <img src="./img/LogoTnagorroco.png" alt="Logo" class="logo">
+                <img src="./img/LogoTnagorroco-removebg-preview.png" alt="Logo" class="logo">
                 </div>
                 <div class="footer-nav">
                     <a href="#">about</a>

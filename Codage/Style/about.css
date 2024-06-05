@@ -253,3 +253,80 @@ nav a:hover {
     color: #555;
     line-height: 1.6;
 }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.review-section {
+    padding: 40px 20px;
+    background-color: #ffffff;
+}
+
+.review-section h2 {
+    font-size: 2em;
+    color: #2d4f6b;
+    margin-bottom: 20px;
+    text-align: center;
+    
+}
+
+.review-item {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.review-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.review-content {
+    flex-grow: 1;
+}
+
+.review-content h3 {
+    font-size: 1.2em;
+    color: #2d4f6b;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.review-content p {
+    font-size: 1em;
+    color: #555;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.review-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.review-actions .like-btn,
+.review-actions .reply-btn {
+    background-color: #7819193c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.review-actions .like-btn i,
+.review-actions .reply-btn i {
+    margin-right: 5px;
+}
+
+.review-actions .like-btn:hover,
+.review-actions .reply-btn:hover {
+    background-color: #1b364d;
+}

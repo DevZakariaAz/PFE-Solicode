@@ -1,36 +1,10 @@
 
 <?php
-$dbn = 'mysql:host=localhost;dbname=tangorocco_v1';
-$user = 'root';
-$pass = '';
 
-$destinations = []; // Initialize $destinations as an empty array
+include "connection.php";
+$topRestaurants = fetchTopRestaurants($conn);
+$topDestinations = fetchTopDestinations($conn);
 
-try {
-    $conn = new PDO($dbn, $user, $pass);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    $type = 'destination';
-    $limit = 3;
-
-    $stmt = $conn->prepare("SELECT p.titre, p.description, p.coverimage, 
-                                   IFNULL(AVG(r.rating), 0) AS average_rating
-                            FROM publication p
-                            LEFT JOIN review r ON p.publicationid = r.publicationid
-                            WHERE p.type = :type
-                            GROUP BY p.publicationid
-                            ORDER BY average_rating DESC
-                            LIMIT :limit");
-
-    $stmt->bindParam(':type', $type, PDO::PARAM_STR);
-    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
-    $stmt->execute();
-
-    $destinations = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-} catch(PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-}
 ?>
 
 <!DOCTYPE html>
@@ -92,28 +66,24 @@ try {
             <h2 class="text-center mb-4">Featured destination</h2>
             <div class="cardsDst">
             <div class="row">
-                <?php if (!empty($destinations)): ?>
-                    <?php foreach ($destinations as $destination): ?>
-                    <div class="col-md-4">
-                        <div class="card mb-4">
-                            <img src="./img/<?php echo htmlspecialchars($destination['coverimage']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($destination['titre']); ?>">
-                            <div class="card-body">
-                                <h5 class="card-title"><i class="fa fa-map-marker"></i> <?php echo htmlspecialchars($destination['titre']); ?></h5>
-                                <p class="card-text"><?php echo htmlspecialchars($destination['description']); ?></p>
-                                <p class="card-text rating"><i class="fa fa-star"></i> <?php echo round($destination['average_rating'], 1); ?></p>
-                                <a href="#" class="btn btn-link">View more <span class="arrow">→</span></a>
-                            </div>
+                <?php foreach ($topDestinations as $destination) : ?>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="./img/<?php echo $destination['coverimage']; ?>" class="card-img-top" alt="<?php echo $destination['titre']; ?>">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $destination['titre']; ?></h5>
+                            <!-- <p class="card-text"><?php echo $destination['description']; ?></p> -->
+                            <p class="card-text rating"><i class="fa fa-star"></i> <?php echo round($destination['average_rating'], 1); ?></p>
+
+                            <a href="#" class="btn btn-link">View more <span class="arrow">→</span></a>
                         </div>
                     </div>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <div class="col-12">
-                        <p class="text-center">No featured destinations available.</p>
-                    </div>
-                <?php endif; ?>
+                </div>
+            <?php endforeach; ?>
             </div>
             <div class="text-center">
-                <a href="#" class="btn btn-secondary">Discover more destinations</a>
+                <br>
+                <a href="#" class="btn btn-secondary mt-6">Discover more destinations</a>
             </div>
         </div>
         </div>
@@ -137,41 +107,19 @@ try {
             <h2 class="text-center mb-4">Restaurant</h2>
             <div class="row">
                 <!-- Restaurant Card 1 -->
+                 <?php foreach ($topRestaurants as $restaurant) : ?>
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="./img/CaféKandinsky.pnj.jpg" height="400" class="card-img-top" alt="Restaurant 1">
+                        <img src="./img/<?php echo $restaurant['coverimage']; ?>" class="card-img-top" alt="<?php echo $restaurant['titre']; ?>">
                         <div class="card-body">
-                            <h5 class="card-title">Café restaurant Kandinsky</h5>
-                            <p class="card-text">Restaurant</p>
-                            <p class="card-text rating"><i class="fa fa-star"></i> 4.6</p>
+                            <h5 class="card-title"><?php echo $restaurant['titre']; ?></h5>
+                            <p class="card-text"><?php echo $restaurant['description']; ?></p>
+                            <p class="card-text rating"><i class="fa fa-star"></i> <?php echo round($restaurant['average_rating'], 1); ?></p>
                             <a href="#" class="btn btn-link">View more <span class="arrow">→</span></a>
                         </div>
                     </div>
                 </div>
-                <!-- Restaurant Card 2 -->
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="./img/Bab b7ar.png" height="400" class="card-img-top" alt="Restaurant 2">
-                        <div class="card-body">
-                            <h5 class="card-title">Miramonte Cafe-Restaurant</h5>
-                            <p class="card-text">Restaurant</p>
-                            <p class="card-text rating"><i class="fa fa-star"></i> 4.6</p>
-                            <a href="#" class="btn btn-link">View more <span class="arrow">→</span></a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Restaurant Card 3 -->
-                <div class="col-md-4">
-                    <div class="card text-left">
-                        <img src="./img/RR Ice.webp" height="400" class="card-img-top" alt="Restaurant 3">
-                        <div class="card-body">
-                            <h5 class="card-title">RR Ice Cafe Restaurant</h5>
-                            <p class="card-text">Restaurant</p>
-                            <p class="card-text rating"> 4.6</p>
-                            <a href="#" class="btn btn-link">View more <span class="arrow">→</span></a>
-                        </div>
-                    </div>
-                </div>
+            <?php endforeach; ?>
             </div>
             <div class="text-center mt-4">
                 <a href="#" class="btn btn-secondary">Discover more Restaurants</a>

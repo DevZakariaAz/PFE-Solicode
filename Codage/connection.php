@@ -48,12 +48,13 @@ FROM
 LEFT JOIN 
     review r ON p.publicationid = r.publicationid
 WHERE 
-    p.location = 'Tangier'
+    p.location = 'Tangier' AND p.cuisineid IS NULL
 GROUP BY 
     p.publicationid
 ORDER BY 
     average_rating DESC
 LIMIT 3;
+
 ";
 
     $statement = $DB->prepare($query);
@@ -61,5 +62,7 @@ LIMIT 3;
 
     return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
+
+//fetch reviews 
 
 ?>

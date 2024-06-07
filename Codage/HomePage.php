@@ -16,6 +16,7 @@ $topDestinations = fetchTopDestinations($conn);
     <title>Explore the beauty of Tangier</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./Style/indexPage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
         integrity="sha384-Z65FFH9kCk3Upsh6zVeJT6zxy5bRB+8SM6RvDhhOdYJbCLs4qybrt1wrj5d9UJGh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
@@ -61,33 +62,54 @@ $topDestinations = fetchTopDestinations($conn);
         </div>
     </div>
     <br>
-    <section class="featured-destination py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Featured destination</h2>
-            <div class="cardsDst">
+<section class="featured-destination py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Featured destination</h2>
+        <div class="cardsDst">
             <div class="row">
                 <?php foreach ($topDestinations as $destination) : ?>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="./img/<?php echo $destination['coverimage']; ?>" class="card-img-top" alt="<?php echo $destination['titre']; ?>">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $destination['titre']; ?></h5>
-                            <!-- <p class="card-text"><?php echo $destination['description']; ?></p> -->
-                            <p class="card-text rating"><i class="fa fa-star"></i> <?php echo round($destination['average_rating'], 1); ?></p>
-
-                            <a href="#" class="btn btn-link">View more <span class="arrow">→</span></a>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <span class="favorite-icon position-absolute top-0 end-0">
+                                <i class="far fa-heart"></i>
+                            </span>
+                            <img src="./img/<?php echo $destination['coverimage']; ?>" class="card-img-top" alt="<?php echo $destination['titre']; ?>">
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo $destination['titre']; ?></h5>
+                                <!-- <p class="card-text"><?php echo $destination['description']; ?></p> -->
+                                <div class="rating">
+                                    <?php
+                                    // Define the maximum number of stars
+                                    $max_stars = 5;
+                                    // Get the average rating for the current destination
+                                    $average_rating = round($destination['average_rating'], 1);
+                                    // Calculate the number of filled stars
+                                    $filled_stars = round($average_rating);
+                                    // Generate HTML for filled stars
+                                    for ($i = 0; $i < $filled_stars; $i++) {
+                                        echo "&#9733;"; // Filled star character
+                                    }
+                                    // Generate HTML for empty stars
+                                    for ($i = $filled_stars; $i < $max_stars; $i++) {
+                                        echo "&#9734;"; // Empty star character
+                                    }
+                                    echo " ({$average_rating} / 5)";
+                                    ?>
+                                </div>
+                                <a href="destination.php?id=<?php echo $destination['publicationid']; ?>" class="btn btn-link">View details <span class="arrow">→</span></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
             </div>
             <div class="text-center">
                 <br>
                 <a href="#" class="btn btn-secondary mt-6">Discover more destinations</a>
             </div>
         </div>
-        </div>
-    </section>
+    </div>
+</section>
+
     <!-- Main Section -->
     <section class="explore-section text-center">
         <div class="container ">
@@ -107,19 +129,52 @@ $topDestinations = fetchTopDestinations($conn);
             <h2 class="text-center mb-4">Restaurant</h2>
             <div class="row">
                 <!-- Restaurant Card 1 -->
-                 <?php foreach ($topRestaurants as $restaurant) : ?>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="./img/<?php echo $restaurant['coverimage']; ?>" class="card-img-top" alt="<?php echo $restaurant['titre']; ?>">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $restaurant['titre']; ?></h5>
-                            <p class="card-text"><?php echo $restaurant['description']; ?></p>
-                            <p class="card-text rating"><i class="fa fa-star"></i> <?php echo round($restaurant['average_rating'], 1); ?></p>
-                            <a href="#" class="btn btn-link">View more <span class="arrow">→</span></a>
-                        </div>
-                    </div>
+<?php foreach ($topRestaurants as $restaurant) : ?>
+    <div class="col-md-4">
+        <div class="card position-relative">
+            <!-- Favorite Icon -->
+            <span class="favorite-icon position-absolute top-0 end-0">
+                <i class="far fa-heart"></i>
+            </span>
+            <!-- Restaurant Image -->
+            <img src="./img/<?php echo $restaurant['coverimage']; ?>" class="card-img-top" alt="<?php echo $restaurant['titre']; ?>">
+            <div class="card-body">
+                <h5 class="card-title"><?php echo $restaurant['titre']; ?></h5>
+                <!-- <p class="card-text"><?php echo $restaurant['description']; ?></p> -->
+                <div class="rating">
+                    <?php
+                    // Define the maximum number of stars
+                    $max_stars = 5;
+
+                    // Get the average rating for the current restaurant
+                    $average_rating = $restaurant['average_rating'];
+
+                    // Calculate the percentage of filled stars
+                    $percentage = ($average_rating / $max_stars) * 100;
+
+                    // Round the percentage to the nearest multiple of 20 (for 5 stars)
+                    $rounded_percentage = round($percentage / 20) * 20;
+
+                    // Calculate the number of filled stars
+                    $filled_stars = $rounded_percentage / 20;
+
+                    // Generate HTML for filled stars
+                    for ($i = 0; $i < $filled_stars; $i++) {
+                        echo "&#9733;"; // Filled star character
+                    }
+
+                    // Generate HTML for empty stars
+                    for ($i = $filled_stars; $i < $max_stars; $i++) {
+                        echo "&#9734;"; // Empty star character
+                    }
+                    ?>
                 </div>
-            <?php endforeach; ?>
+                <a href="about.php?publicationid=<?php echo $restaurant['publicationid']; ?>" class="btn btn-link">View more <span class="arrow">→</span></a>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
             </div>
             <div class="text-center mt-4">
                 <a href="#" class="btn btn-secondary">Discover more Restaurants</a>
@@ -140,7 +195,40 @@ $topDestinations = fetchTopDestinations($conn);
         <div class="imagepattern"></div>
     </section>
 
-    <!-- Comments Section -->
+   <!-- Comments Section -->
+<!-- <section class="comments-section py-5">
+    <div class="container">
+        <div class="comment-boxs">
+            <div class="col-md-6">
+                <div class="comment-box p-4">
+                    <h3 class="Best_comments">Best Comments</h3>
+                    <blockquote class="blockquote">
+                        <p>“I found a reason to live”</p>
+                        <footer class="blockquote-footer">I few months back, I was considering suicide. Life felt unbearable and lonely. I was opportuned to come across a group trip to Old Medina, I made new friends and found a community of people. Now we are planning a new group trip soon.</footer>
+                    </blockquote>
+                    <div class="navigation-arrows">
+                        <div>
+                            <span class="arrow left-arrow" onclick="showPreviousComment()">&larr;</span>
+                            <span class="arrow right-arrow" onclick="showNextComment()">&rarr;</span>
+                        </div>
+                        <div class="pagination-dots mt-2">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot" style="background-color: aqua;"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="comment-image">
+                    <div class="comment-image-img"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+<!-- Comments Section -->
     <section class="comments-section py-5">
         <div class="container">
             <div class="comment-boxs">
@@ -184,8 +272,7 @@ $topDestinations = fetchTopDestinations($conn);
                     <div class="testimonial-card p-4">
                         <h5 class="client-name">Alex Feder</h5>
                         <p class="client-location">Miami, USA</p>
-                        <p class="client-review">Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Urna, Torto
-                            Tempus.</p>
+                        <p class="client-review">I had an amazing experience using this website to plan my trip to Tangier. It provided comprehensive information about the city's attractions, accommodations, and dining options. Thanks to this platform, my trip was a memorable one!</p>
                         <div class="rating">
                             &#9733;&#9733;&#9733;&#9733;&#9733;
                         </div>
@@ -195,8 +282,7 @@ $topDestinations = fetchTopDestinations($conn);
                     <div class="testimonial-card p-4">
                         <h5 class="client-name">Elly Forbs</h5>
                         <p class="client-location">London, England</p>
-                        <p class="client-review">Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Urna, Torto
-                            Tempus.</p>
+                        <p class="client-review">As a food enthusiast, I found this website to be incredibly useful in discovering the best restaurants in Tangier. The reviews and recommendations helped me explore the city's culinary scene and find hidden gems I wouldn't have known about otherwise.</p>
                         <div class="rating">
                             &#9733;&#9733;&#9733;&#9733;&#9733;
                         </div>
@@ -206,8 +292,7 @@ $topDestinations = fetchTopDestinations($conn);
                     <div class="testimonial-card p-4">
                         <h5 class="client-name">Mia Nest</h5>
                         <p class="client-location">Madrid, Spain</p>
-                        <p class="client-review">Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Urna, Torto
-                            Tempus.</p>
+                        <p class="client-review">I stumbled upon this website while planning my trip to Tangier, and it turned out to be a lifesaver! The detailed guides and insider tips made my visit to Tangier stress-free and enjoyable. I'll definitely be using this platform for future travels.</p>
                         <div class="rating">
                             &#9733;&#9733;&#9733;&#9733;&#9733;
                         </div>
@@ -217,8 +302,7 @@ $topDestinations = fetchTopDestinations($conn);
                     <div class="testimonial-card p-4">
                         <h5 class="client-name">Dan Dornu</h5>
                         <p class="client-location">Iasi, Romania</p>
-                        <p class="client-review">Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Urna, Torto
-                            Tempus.</p>
+                        <p class="client-review">This website was a game-changer for my vacation in Tangier. It provided me with valuable insights into the city's culture, history, and attractions. Thanks to the detailed information and user-friendly interface, I was able to make the most out of my trip.</p>
                         <div class="rating">
                             &#9733;&#9733;&#9733;&#9733;&#9733;
                         </div>
@@ -259,11 +343,100 @@ $topDestinations = fetchTopDestinations($conn);
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+    const favoriteIcons = document.querySelectorAll('.favorite-icon i');
+    favoriteIcons.forEach(icon => {
+        icon.addEventListener('click', function () {
+            if (this.classList.contains('far')) {
+                this.classList.remove('far');
+                this.classList.add('fas');
+                this.style.color = 'red';
+            } else {
+                this.classList.remove('fas');
+                this.classList.add('far');
+                this.style.color = '';
+            }
+        });
+    });
+});
+
+// const images = ['./img/Sky_image.jpg', './img/blueSky.webp', './img/Cap_Spartel.png'];
+// let currentIndex = 0;
+// const imageElement = document.querySelector('.comment-image-img');
+
+// function changeImage() {
+//     imageElement.style.backgroundImage = `url('${images[currentIndex]}')`;
+//     currentIndex = (currentIndex + 1) % images.length;
+// }
+// changeImage();
+
+
+// // Change image every 5 seconds (adjust as needed)
+// setInterval(changeImage, 5000);
+
+// Define an array of comments and testimonials
+// const comments = [
+//     {
+//         comment: "“I found a reason to live”",
+//         testimonial: "A few months back, I was considering suicide. Life felt unbearable and lonely. I was fortunate to come across a group trip to Old Medina. I made new friends and found a community of people. Now we are planning a new group trip soon."
+//     },
+//     {
+//         comment: "“Incredible experience!”",
+//         testimonial: "Visiting Cap Spartel was an incredible experience. The view of the ocean and the lighthouse is breathtaking. I highly recommend it to anyone visiting Tangier."
+//     },
+//     {
+//         comment: "“The best food ever!”",
+//         testimonial: "Eating at El Morocco Club was an unforgettable culinary experience. The food was delicious, and the ambiance was perfect for a romantic dinner. I will definitely come back."
+//     },
+//     // Add more comments and testimonials as needed
+// ];
+
+// // Initialize variables
+// let currentCommentIndex = 0;
+// let isShowingComment = true;
+// const commentBlock = document.querySelector(".comment-box .blockquote p");
+// const testimonialBlock = document.querySelector(".comment-box .blockquote footer");
+
+// // Function to update the comment or testimonial
+// function updateContent() {
+//     if (isShowingComment) {
+//         commentBlock.textContent = comments[currentCommentIndex].comment;
+//         testimonialBlock.textContent = "";
+//     } else {
+//         commentBlock.textContent = "";
+//         testimonialBlock.textContent = comments[currentCommentIndex].testimonial;
+//     }
+// }
+
+// // Function to show the next comment or testimonial
+// function showNextContent() {
+//     currentCommentIndex++;
+//     if (currentCommentIndex >= comments.length) {
+//         currentCommentIndex = 0;
+//     }
+//     updateContent();
+// }
+
+// // Function to toggle between comments and testimonials
+// function toggleContent() {
+//     isShowingComment = !isShowingComment;
+//     updateContent();
+// }
+
+// // Automatically move to the next comment or testimonial at regular intervals (5 seconds)
+// setInterval(showNextContent, 5000);
+
+// // Initially display the first comment
+// updateContent();
+
+// // Add event listener to the navigation arrows for toggling
+// document.querySelector(".left-arrow").addEventListener("click", toggleContent);
+// document.querySelector(".right-arrow").addEventListener("click", toggleContent);
+
+</script>
 </body>
 
 </html>
-<?php
-// include "./package/footer.html" ;
-// // include "./Style/footer.css";
-// include "./package/navbar.html";
-?>

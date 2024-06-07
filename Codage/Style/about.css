@@ -164,7 +164,70 @@ nav a:hover {
     text-align: center;
     
 }
+.like-btn {
+    color: #000;
+    /* Default color */
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+}
 
+.like-btn i {
+    margin-right: 5px;
+}
+
+.like-btn.active {
+    color: red;
+    /* Change color to red when active */
+}
+
+.review-item .rating {
+    color: #f1c40f;
+    /* Gold color for stars */
+    font-size: 16px;
+    margin-right: 10px;
+    /* Space between rating and username */
+}
+
+.review-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.review-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+}
+
+.review-actions {
+    margin-top: 10px;
+}
+
+.review-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.review-item h3 {
+    margin: 0;
+    /* Ensure no extra margin around username */
+}
+
+.review-content p {
+    margin: 10px 0 0;
+    /* Margin to separate comment from username */
+} 
 .about-card h2 {
     font-size: 1.8em;
     margin-bottom: 10px;
@@ -312,8 +375,8 @@ body {
 
 .review-actions .like-btn,
 .review-actions .reply-btn {
-    background-color: #7819193c;
-    color: white;
+    /* background-color: #7819193c; */
+    color: rgb(0, 0, 0);
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
@@ -329,4 +392,21 @@ body {
 .review-actions .like-btn:hover,
 .review-actions .reply-btn:hover {
     background-color: #1b364d;
+}
+.rating {
+    font-size: 1.2rem;
+    color: #ffcc00;
+    /* Gold color for stars */
+}
+
+.favorite-icon i {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #ccc;
+    /* Initial color for the heart icon */
+}
+
+.favorite-icon i.text-danger {
+    color: red;
+    /* Red color for the heart icon when active */
 }

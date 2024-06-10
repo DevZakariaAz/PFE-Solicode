@@ -9,7 +9,7 @@ Fournir aux touristes une interface conviviale pour explorer les attractions tou
 Offrir des informations détaillées sur chaque attraction, y compris des descriptions, des photos, des horaires d'ouverture, et des coordonnées.
 Permettre aux utilisateurs de rechercher des attractions et des restaurants par catégories, telles que les sites historiques, les parcs, les cafés, et plus encore.
 Mettre en place des cartes interactives pour afficher les emplacements des attractions touristiques, des restaurants et des lieux culturels.
-Autoriser les utilisateurs à laisser des avis et des notes po‬ur les attractions et les restaurants pour aider les autres touristes à prendre des décisions éclairées.
+Autoriser les utilisateurs à laisser des avis et des notes pour les attractions et les restaurants pour aider les autres touristes à prendre des décisions éclairées.
 Promouvoir les entreprises locales et les institutions culturelles en les présentant sur le site.
 Portée :
 Le projet impliquera le développement des composants frontend et backend du site Web. Il inclura la création de schémas de base de données pour stocker les données des attractions et des restaurants, la conception d'interfaces utilisateur pour la navigation et la recherche, et la mise en œuvre de fonctionnalités pour les avis et les notes des utilisateurs.

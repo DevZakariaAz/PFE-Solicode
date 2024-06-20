@@ -1,15 +1,12 @@
-
 <?php
-
+session_start();
 include "connection.php";
 $topRestaurants = fetchTopRestaurants($conn);
 $topDestinations = fetchTopDestinations($conn);
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,9 +21,8 @@ $topDestinations = fetchTopDestinations($conn);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- Font Awesome -->
 </head>
-
 <body>
-    <nav class="navbar navbar-expand-lg  ">
+    <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="#">
             <img src="./img/LogoTnagorroco.png" width="180" height="auto" class="d-inline-block align-top" alt="Logo">
         </a>
@@ -36,28 +32,41 @@ $topDestinations = fetchTopDestinations($conn);
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="#">about</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Restaurants</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">destination</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">blog</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Destination</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                <?php if(isset($_SESSION['user_id'])): ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user"></i> <?php echo htmlspecialchars($_SESSION['user_name']); ?>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Profile</a>
+                            <a class="dropdown-item" href="logout.php">Logout</a>
+                        </div>
+                    </li>
+                <?php else: ?>
+                    <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+                <?php endif; ?>
             </ul>
         </div>
     </nav>
+
 
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-6 text-center text-md-left">
                 <h1 class="display-3">Explore the beauty of Tangier</h1>
                 <form class="form-inline justify-content-center justify-content-md-start mt-3">
-                    <input class="form-control mr-2" type="search" placeholder="search destinations"
-                        aria-label="Search">
+                    <input class="form-control mr-2" type="search" placeholder="Search destinations" aria-label="Search">
                     <button class="btn btn-primary" type="submit">Explore</button>
                 </form>
                 <p class="mt-3">Still deciding where to go? <a href="#" class="head1">Explore destinations</a></p>
             </div>
             <div class="col-md-6 text-center">
-                <img src="./img/Tanger.png" class="img-fluid" width="600"  alt="Tangier">
+                <img src="./img/Tanger.png" class="img-fluid" width="600" alt="Tangier">
             </div>
         </div>
     </div>
@@ -104,7 +113,7 @@ $topDestinations = fetchTopDestinations($conn);
             </div>
             <div class="text-center">
                 <br>
-                <a href="#" class="btn btn-secondary mt-6">Discover more destinations</a>
+                <a href="Alldestination.php" class="btn btn-secondary mt-6">Discover more destinations</a>
             </div>
         </div>
     </div>
@@ -318,7 +327,7 @@ $topDestinations = fetchTopDestinations($conn);
         <div class="container">
             
                 <div class="footer-logo">
-                <img src="./img/LogoTnagorroco-removebg-preview.png" alt="Logo" class="logo">
+                <img src="./img/LogoTnagorroco.png" alt="Logo" class="logo">
                 </div>
                 <div class="footer-nav">
                     <a href="#">about</a>

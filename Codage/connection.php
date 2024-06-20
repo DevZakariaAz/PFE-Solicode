@@ -34,6 +34,55 @@ function fetchTopRestaurants($pdo) {
 
     return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function fetchAllDestinationsV2($DB) {
+    $query = "
+        SELECT 
+            p.publicationid, 
+            p.titre, 
+            p.description, 
+            p.location, 
+            p.coverimage, 
+            GROUP_CONCAT(DISTINCT c.category) AS categories, 
+            cu.nationalite AS cuisine, 
+            COUNT(r.reviewid) AS review_count, 
+            AVG(r.rating) AS average_rating 
+        FROM 
+            publication p
+        LEFT JOIN 
+            category_publication cp ON p.publicationid = cp.publicationid 
+        LEFT JOIN 
+            category c ON cp.categoryid = c.categoryid 
+        LEFT JOIN 
+            cuisine cu ON p.cuisineid = cu.cuisineid
+        LEFT JOIN 
+            review r ON p.publicationid = r.publicationid 
+        WHERE 
+            p.type = 'destination' 
+        GROUP BY 
+            p.publicationid
+        ORDER BY 
+            average_rating DESC;
+    ";
+
+    $statement = $DB->prepare($query);
+    $statement->execute();
+
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
+}
+function searchDestinations($conn, $searchQuery) {
+    $query = "SELECT p.*, AVG(r.rating) AS average_rating, COUNT(r.reviewid) AS review_count 
+              FROM publication p 
+              LEFT JOIN review r ON p.publicationid = r.publicationid 
+              WHERE p.titre LIKE :searchQuery OR p.description LIKE :searchQuery
+              GROUP BY p.publicationid";
+
+    $stmt = $conn->prepare($query);
+    $searchParam = "%{$searchQuery}%";
+    $stmt->bindParam(':searchQuery', $searchParam, PDO::PARAM_STR);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 function fetchTopDestinations($DB) {
     $query = "
     SELECT 

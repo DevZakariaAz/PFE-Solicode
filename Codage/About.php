@@ -92,21 +92,21 @@ $reviews = fetchReviews($conn, $publicationid);
             <div class="step">
                 <div class="step-icon">&#x2714;</div>
                 <div class="step-details">
-                    <h3>Start Project</h3>
+                    <!-- <h3>Start Project</h3> -->
                     <p>Embark on your design adventure by initiating your project. Share your vision and set the stage for a bespoke design experience.</p>
                 </div>
             </div>
             <div class="step">
                 <div class="step-icon">&#x2699;</div>
                 <div class="step-details">
-                    <h3>Craft</h3>
+                    <!-- <h3>Craft</h3> -->
                     <p>Collaborate closely to achieve design excellence, refining your vision and crafting brilliance into every aspect of your space.</p>
                 </div>
             </div>
             <div class="step">
                 <div class="step-icon">&#x1F3A8;</div>
                 <div class="step-details">
-                    <h3>Choose the Best</h3>
+                    <!-- <h3>Choose the Best</h3> -->
                     <p>Finalize your design choices and select the best elements to bring your dream space to life.</p>
                 </div>
             </div>

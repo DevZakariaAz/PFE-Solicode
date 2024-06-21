@@ -169,7 +169,7 @@ $topDestinations = fetchTopDestinations($conn);
 </div>
 
             <div class="text-center mt-4">
-                <a href="#" class="btn btn-secondary">Discover more Restaurants</a>
+                <a href="AllrRestaurants.php" class="btn btn-secondary">Discover more Restaurants</a>
             </div>
         </div>
     </section>

@@ -49,119 +49,7 @@ if (count($restaurants) > 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Explore Restaurants</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        /* CSS styles for the page */
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 0;
-        }
-        .restaurant-section {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            padding: 20px;
-        }
-        .restaurant-card {
-            flex: 0 0 calc(33.33% - 20px);
-            margin: 10px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            background-color: #fff;
-            transition: transform 0.3s;
-            position: relative;
-        }
-        .restaurant-card:hover {
-            transform: translateY(-5px);
-        }
-        .restaurant-image img {
-            width: 100%;
-            height: 350px; /* Adjust height as needed */
-            object-fit: cover;
-        }
-        .restaurant-content {
-            padding: 15px;
-        }
-        .rating {
-            margin: 10px 0;
-            color: #FFD700; /* Gold color for stars */
-            font-size: 1.2rem;
-        }
-        .favorite-icon {
-            cursor: pointer;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 1.5rem;
-            color: #ff6666; /* Light red color for the heart icon */
-        }
-        .fas.fa-heart {
-            color: #ff0000; /* Red for solid heart (favorited) */
-        }
-         .hero-section {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            max-width: 600px;
-            margin: 40px auto; /* Add some spacing around */
-            text-align: center;
-            color: #06414E; /* Dark teal color for text */
-        }.hero-section {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            max-width: 600px;
-            margin: 40px auto;
-            text-align: center;
-            color: #06414E;
-        }
-        .hero-title {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        .search-form {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        .search-input {
-            padding: 10px;
-            border: 1px solid #06414E;
-            border-radius: 5px;
-            font-size: 1rem;
-            width: 300px;
-            margin-right: 10px;
-            outline: none;
-        }
-        .search-button {
-            background-color: #06414E;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .search-button:hover {
-            background-color: #052F3C;
-        }
-        .explore-link {
-            color: #06414E;
-            text-decoration: none;
-            font-size: 0.9rem;
-            margin-top: 10px;
-            display: inline-block;
-        }
-        .explore-link:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="./Style/AllRestaurants.css">
 </head>
 <body>
     <?php include "./package/navbar.html"; ?>
@@ -201,6 +89,8 @@ if (count($restaurants) > 0) {
                         echo "({$average_rating} / 5) " ;
                         ?>  
                     </div>
+                    <a href="about.php?publicationid=<?php echo $restaurant['publicationid']; ?>" class="btn btn-link">View more <span class="arrow">→</span></a>
+
                 </div>
             </div>
         <?php endforeach; ?>

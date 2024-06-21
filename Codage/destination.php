@@ -1,5 +1,13 @@
 <?php
 include "connection.php";
+session_start(); // Start the session
+
+// Check if the user session exists
+if (empty($_SESSION['user_id'])) {
+    // If no session exists, redirect to the login page
+    header('Location: login.php');
+    exit(); // Exit to prevent further script execution
+}
 
 // Get the destination ID from the URL
 $destination_id = isset($_GET['id']) ? intval($_GET['id']) : 1;
@@ -54,88 +62,13 @@ $reviews = fetchReviews($conn, $destination_id);
     <title><?php echo htmlspecialchars($destination['titre']); ?> - Destination</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./Style/indexPage.css">
+    <link rel="stylesheet" href="./Style/destination.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
         integrity="sha384-Z65FFH9kCk3Upsh6zVeJT6zxy5bRB+8SM6RvDhhOdYJbCLs4qybrt1wrj5d9UJGh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
-        .destination-image img {
-            border-bottom-left-radius: 70px;
-            width: 600px;
-            height: 500px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.026);
-        }
-
-        .review-section {
-            padding: 40px 20px;
-            background-color: #ffffff;
-        }
-
-        .review-section h2 {
-            font-size: 2em;
-            color: #2d4f6b;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .review-item {
-            display: flex;
-            align-items: center;
-            padding: 20px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .review-item img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 20px;
-        }
-
-        .review-content {
-            flex-grow: 1;
-        }
-
-        .review-content h3 {
-            font-size: 1.2em;
-            color: #2d4f6b;
-            margin: 0;
-            margin-bottom: 10px;
-        }
-
-        .review-content p {
-            font-size: 1em;
-            color: #555;
-            margin: 0;
-            margin-bottom: 10px;
-        }
-
-        .review-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .review-actions .like-btn,
-        .review-actions .reply-btn {
-            color: rgb(0, 0, 0);
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .review-actions .like-btn i,
-        .review-actions .reply-btn i {
-            margin-right: 5px;
-        }
-
-        .review-actions .like-btn:hover,
-        .review-actions .reply-btn:hover {
-            background-color: #1b364d;
-        }
-    </style>
+    
 </head>
 
 <body>

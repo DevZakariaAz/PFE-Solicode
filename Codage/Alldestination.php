@@ -1,20 +1,25 @@
 <?php
 include "connection.php"; // Include your database connection file
-
-
-    // Assuming $DB is your PDO connection object
-    $destinations = fetchAllDestinationsV2($conn);
-
-    if (count($destinations) > 0) {
+  // Assuming $DB is your PDO connection object
+$destinations = fetchAllDestinationsV2($conn);
+if (count($destinations) > 0) {
         
-        ?>
-        <!DOCTYPE html>
+?>
+<!DOCTYPE html>
         <html lang="en">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Explore Tangier Destinations</title>
             <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+            <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-Z65FFH9kCk3Upsh6zVeJT6zxy5bRB+8SM6RvDhhOdYJbCLs4qybrt1wrj5d9UJGh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
             <style>
                 /* CSS styles for the page */
                 body {
@@ -59,7 +64,8 @@ include "connection.php"; // Include your database connection file
                 .rating {
                     color: #FFA500;
                     font-size: 1.2rem;
-                }.hero-section {
+                }
+            .hero-section {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -127,39 +133,94 @@ include "connection.php"; // Include your database connection file
         .search-result {
             border-bottom: 1px solid #ddd;
             padding: 10px 0;
-        }
+            }
+           /* Make the selector more specific */
+            .destination-content .btn-link {
+                color: #006d77 !important;
+                font-weight: 700;
+                text-decoration: none;
+            }
+
+            .destination-content .btn-link .arrow {
+                font-size: 1.2rem;
+                display: inline-block;
+                transition: transform 0.2s;
+            }
+
+            .destination-content .btn-link:hover .arrow {
+                transform: translateX(5px);
+            }
+
+
             </style>
         </head>
         <body>
-        <?php include "./package/navbar.html"; ?>
-<section class="hero-section">
-    <h1 class="hero-title">Explore the beauty of Tangier</h1>
-    <form class="search-form" action="index.php" method="get">
-        <input type="text" class="search-input" name="q" id="search-query" placeholder="Search destinations" required>
-        <button type="submit" class="search-button">Explore</button>
-    </form>
-    <a href="destinations.html" class="explore-link">Still deciding where to go? Explore destinations</a>
-    <!-- Container to display search results -->
-    <div class="search-results" id="search-results">
-        <?php
-        if (isset($_GET['q'])) {
-            $searchQuery = $_GET['q'];
-            // Perform search in PHP and display results
-            $filtered_destinations = searchDestinations($conn, $searchQuery);
+            <?php include "./package/navbar.html"; ?>
+            <section class="hero-section">
+                <h1 class="hero-title">Explore the beauty of Tangier</h1>
+                <form class="search-form" action="index.php" method="get">
+                    <input type="text" class="search-input" name="q" id="search-query" placeholder="Search destinations" required>
+                    <button type="submit" class="search-button">Explore</button>
+                </form>
+                    <a href="destinations.html" class="explore-link">Still deciding where to go? Explore destinations</a>
+                    <!-- Container to display search results -->
+                <div class="search-results" id="search-results">
+                    <?php
+                    if (isset($_GET['q'])) {
+                        $searchQuery = $_GET['q'];
+                        // Perform search in PHP and display results
+                        $filtered_destinations = searchDestinations($conn, $searchQuery);
 
-            if (count($filtered_destinations) > 0) {
-                foreach ($filtered_destinations as $destination) {
-        ?>
+                        if (count($filtered_destinations) > 0) {
+                            foreach ($filtered_destinations as $destination) {
+                        ?>
+                                <div class="destination-card">
+                                    <div class="destination-image">
+                                        <img src="./img/<?php echo htmlspecialchars($destination['coverimage']); ?>" alt="<?php echo htmlspecialchars($destination['titre']); ?>">
+                                    </div>
+                                    <div class="destination-content">
+                                        <h2><?php echo htmlspecialchars($destination['titre']); ?></h2>
+                                        <p><?php echo htmlspecialchars($destination['description']); ?></p>
+                                        <p><strong>Location:</strong> <?php echo htmlspecialchars($destination['location']); ?></p>
+                                        <p><strong>Categories:</strong> <?php echo htmlspecialchars($destination['categories']); ?></p>
+                                    
+                                        <div class="rating">
+                                            <?php
+                                            $average_rating = round($destination['average_rating'], 1);
+                                            $filled_stars = round($average_rating);
+                                            $max_stars = 5;
+                                            for ($i = 0; $i < $filled_stars; $i++) {
+                                                echo "&#9733;"; // Filled star
+                                            }
+                                            for ($i = $filled_stars; $i < $max_stars; $i++) {
+                                                echo "&#9734;"; // Empty star
+                                            }
+                                            echo " ({$average_rating} / 5) based on " . $destination['review_count'] . " reviews";
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                        <?php
+                            }
+                        } else {
+                            echo '<p>No results found.</p>';
+                        }
+                    }
+                    ?>
+                </div>
+            </section>
+            <section class="destination-section">
+                <?php foreach ($destinations as $destination): ?>
                     <div class="destination-card">
                         <div class="destination-image">
                             <img src="./img/<?php echo htmlspecialchars($destination['coverimage']); ?>" alt="<?php echo htmlspecialchars($destination['titre']); ?>">
                         </div>
                         <div class="destination-content">
                             <h2><?php echo htmlspecialchars($destination['titre']); ?></h2>
-                            <p><?php echo htmlspecialchars($destination['description']); ?></p>
+                            <p><?php// echo htmlspecialchars($destination['description']); ?></p>
                             <p><strong>Location:</strong> <?php echo htmlspecialchars($destination['location']); ?></p>
                             <p><strong>Categories:</strong> <?php echo htmlspecialchars($destination['categories']); ?></p>
-                           
+                        
                             <div class="rating">
                                 <?php
                                 $average_rating = round($destination['average_rating'], 1);
@@ -174,55 +235,17 @@ include "connection.php"; // Include your database connection file
                                 echo " ({$average_rating} / 5) based on " . $destination['review_count'] . " reviews";
                                 ?>
                             </div>
-                        </div>
-                    </div>
-        <?php
-                }
-            } else {
-                echo '<p>No results found.</p>';
-            }
-        }
-        ?>
-    </div>
-</section>
-        <section class="destination-section">
-            <?php foreach ($destinations as $destination): ?>
-                <div class="destination-card">
-                    <div class="destination-image">
-                        <img src="./img/<?php echo htmlspecialchars($destination['coverimage']); ?>" alt="<?php echo htmlspecialchars($destination['titre']); ?>">
-                    </div>
-                    <div class="destination-content">
-                        <h2><?php echo htmlspecialchars($destination['titre']); ?></h2>
-                        <p><?php// echo htmlspecialchars($destination['description']); ?></p>
-                        <p><strong>Location:</strong> <?php echo htmlspecialchars($destination['location']); ?></p>
-                        <p><strong>Categories:</strong> <?php echo htmlspecialchars($destination['categories']); ?></p>
-                       
-                        <div class="rating">
-                            <?php
-                            $average_rating = round($destination['average_rating'], 1);
-                            $filled_stars = round($average_rating);
-                            $max_stars = 5;
-                            for ($i = 0; $i < $filled_stars; $i++) {
-                                echo "&#9733;"; // Filled star
-                            }
-                            for ($i = $filled_stars; $i < $max_stars; $i++) {
-                                echo "&#9734;"; // Empty star
-                            }
-                            echo " ({$average_rating} / 5) based on " . $destination['review_count'] . " reviews";
-                            ?>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </section>
+                                                <a href="destination.php?id=<?php echo $destination['publicationid']; ?>" class="btn btn-link">View details <span class="arrow">→</span></a>
 
-        <?php include "./package/footer.html"; ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </section>
+
+            <?php include "./package/footer.html"; ?>
         </body>
       
-        </html>
-        <?php
-    } else {
-        echo "No destinations found.";
-    }
-
+    </html>
+<?php
+} 
 ?>

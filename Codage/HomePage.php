@@ -14,6 +14,8 @@ $topDestinations = fetchTopDestinations($conn);
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./Style/indexPage.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
         integrity="sha384-Z65FFH9kCk3Upsh6zVeJT6zxy5bRB+8SM6RvDhhOdYJbCLs4qybrt1wrj5d9UJGh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
@@ -32,9 +34,9 @@ $topDestinations = fetchTopDestinations($conn);
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Restaurants</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Destination</a></li>
+                <li class="nav-item"><a class="nav-link" href="HomePage.php">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="AllrRestaurants.php">Restaurants</a></li>
+                <li class="nav-item"><a class="nav-link" href="Alldestination.php">Destination</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
                 <?php if(isset($_SESSION['user_id'])): ?>
@@ -43,7 +45,7 @@ $topDestinations = fetchTopDestinations($conn);
                             <i class="fas fa-user"></i> <?php echo htmlspecialchars($_SESSION['user_name']); ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Profile</a>
+                            <a class="dropdown-item" href="profile.php">Profile</a>
                             <a class="dropdown-item" href="logout.php">Logout</a>
                         </div>
                     </li>
@@ -76,41 +78,36 @@ $topDestinations = fetchTopDestinations($conn);
         <h2 class="text-center mb-4">Featured destination</h2>
         <div class="cardsDst">
             <div class="row">
-                <?php foreach ($topDestinations as $destination) : ?>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <span class="favorite-icon position-absolute top-0 end-0">
-                                <i class="far fa-heart"></i>
-                            </span>
-                            <img src="./img/<?php echo $destination['coverimage']; ?>" class="card-img-top" alt="<?php echo $destination['titre']; ?>">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo $destination['titre']; ?></h5>
-                                <!-- <p class="card-text"><?php echo $destination['description']; ?></p> -->
-                                <div class="rating">
-                                    <?php
-                                    // Define the maximum number of stars
-                                    $max_stars = 5;
-                                    // Get the average rating for the current destination
-                                    $average_rating = round($destination['average_rating'], 1);
-                                    // Calculate the number of filled stars
-                                    $filled_stars = round($average_rating);
-                                    // Generate HTML for filled stars
-                                    for ($i = 0; $i < $filled_stars; $i++) {
-                                        echo "&#9733;"; // Filled star character
-                                    }
-                                    // Generate HTML for empty stars
-                                    for ($i = $filled_stars; $i < $max_stars; $i++) {
-                                        echo "&#9734;"; // Empty star character
-                                    }
-                                    echo " ({$average_rating} / 5)";
-                                    ?>
-                                </div>
-                                <a href="destination.php?id=<?php echo $destination['publicationid']; ?>" class="btn btn-link">View details <span class="arrow">→</span></a>
-                            </div>
-                        </div>
+    <?php foreach ($topDestinations as $destination) : ?>
+        <div class="col-md-4">
+            <div class="card">
+                <span class="favorite-icon position-absolute top-0 end-0">
+                    <i class="far fa-heart" data-id="<?php echo $destination['publicationid']; ?>"></i>
+                </span>
+                <img src="./img/<?php echo $destination['coverimage']; ?>" class="card-img-top" alt="<?php echo $destination['titre']; ?>">
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo $destination['titre']; ?></h5>
+                    <div class="rating">
+                        <?php
+                        $max_stars = 5;
+                        $average_rating = round($destination['average_rating'], 1);
+                        $filled_stars = round($average_rating);
+                        for ($i = 0; $i < $filled_stars; $i++) {
+                            echo "&#9733;";
+                        }
+                        for ($i = $filled_stars; $i < $max_stars; $i++) {
+                            echo "&#9734;";
+                        }
+                        echo " ({$average_rating} / 5)";
+                        ?>
                     </div>
-                <?php endforeach; ?>
+                    <a href="destination.php?id=<?php echo $destination['publicationid']; ?>" class="btn btn-link">View details <span class="arrow">→</span></a>
+                </div>
             </div>
+        </div>
+    <?php endforeach; ?>
+</div>
+
             <div class="text-center">
                 <br>
                 <a href="Alldestination.php" class="btn btn-secondary mt-6">Discover more destinations</a>
@@ -137,54 +134,40 @@ $topDestinations = fetchTopDestinations($conn);
         <div class="container">
             <h2 class="text-center mb-4">Restaurant</h2>
             <div class="row">
-                <!-- Restaurant Card 1 -->
-<?php foreach ($topRestaurants as $restaurant) : ?>
-    <div class="col-md-4">
-        <div class="card position-relative">
-            <!-- Favorite Icon -->
-            <span class="favorite-icon position-absolute top-0 end-0">
-                <i class="far fa-heart"></i>
-            </span>
-            <!-- Restaurant Image -->
-            <img src="./img/<?php echo $restaurant['coverimage']; ?>" class="card-img-top" alt="<?php echo $restaurant['titre']; ?>">
-            <div class="card-body">
-                <h5 class="card-title"><?php echo $restaurant['titre']; ?></h5>
-                <!-- <p class="card-text"><?php echo $restaurant['description']; ?></p> -->
-                <div class="rating">
-                    <?php
-                    // Define the maximum number of stars
-                    $max_stars = 5;
+    <?php foreach ($topRestaurants as $restaurant) : ?>
+        <div class="col-md-4">
+            <div class="card position-relative">
+                <!-- Favorite Icon -->
+                <span class="favorite-icon position-absolute top-0 end-0">
+                    <i class="far fa-heart" data-id="<?php echo $restaurant['publicationid']; ?>"></i>
+                </span>
+                <!-- Restaurant Image -->
+                <img src="./img/<?php echo $restaurant['coverimage']; ?>" class="card-img-top" alt="<?php echo $restaurant['titre']; ?>">
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo $restaurant['titre']; ?></h5>
+                    <div class="rating">
+                        <?php
+                        $max_stars = 5;
+                        $average_rating = $restaurant['average_rating'];
+                        $percentage = ($average_rating / $max_stars) * 100;
+                        $rounded_percentage = round($percentage / 20) * 20;
+                        $filled_stars = $rounded_percentage / 20;
 
-                    // Get the average rating for the current restaurant
-                    $average_rating = $restaurant['average_rating'];
-
-                    // Calculate the percentage of filled stars
-                    $percentage = ($average_rating / $max_stars) * 100;
-
-                    // Round the percentage to the nearest multiple of 20 (for 5 stars)
-                    $rounded_percentage = round($percentage / 20) * 20;
-
-                    // Calculate the number of filled stars
-                    $filled_stars = $rounded_percentage / 20;
-
-                    // Generate HTML for filled stars
-                    for ($i = 0; $i < $filled_stars; $i++) {
-                        echo "&#9733;"; // Filled star character
-                    }
-
-                    // Generate HTML for empty stars
-                    for ($i = $filled_stars; $i < $max_stars; $i++) {
-                        echo "&#9734;"; // Empty star character
-                    }
-                    ?>
+                        for ($i = 0; $i < $filled_stars; $i++) {
+                            echo "&#9733;";
+                        }
+                        for ($i = $filled_stars; $i < $max_stars; $i++) {
+                            echo "&#9734;";
+                        }
+                        ?>
+                    </div>
+                    <a href="about.php?publicationid=<?php echo $restaurant['publicationid']; ?>" class="btn btn-link">View more <span class="arrow">→</span></a>
                 </div>
-                <a href="about.php?publicationid=<?php echo $restaurant['publicationid']; ?>" class="btn btn-link">View more <span class="arrow">→</span></a>
             </div>
         </div>
-    </div>
-<?php endforeach; ?>
+    <?php endforeach; ?>
+</div>
 
-            </div>
             <div class="text-center mt-4">
                 <a href="#" class="btn btn-secondary">Discover more Restaurants</a>
             </div>
@@ -371,7 +354,91 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+    document.addEventListener('DOMContentLoaded', function () {
+        // Select all heart icons for restaurants
+        const favoriteIcons = document.querySelectorAll('.favorite-icon i');
 
+        // Function to toggle favorite state
+        function toggleFavorite(event) {
+            const icon = event.target;
+            const restaurantId = icon.getAttribute('data-id');
+            
+            // Get current favorites from local storage or initialize to empty array
+            let restaurantFavorites = JSON.parse(localStorage.getItem('restaurantFavorites')) || [];
+
+            // Toggle favorite status
+            if (restaurantFavorites.includes(restaurantId)) {
+                // Remove restaurant from favorites
+                restaurantFavorites = restaurantFavorites.filter(id => id !== restaurantId);
+                icon.classList.remove('fas'); // Solid heart
+                icon.classList.add('far');    // Regular heart
+            } else {
+                // Add restaurant to favorites
+                restaurantFavorites.push(restaurantId);
+                icon.classList.remove('far'); // Regular heart
+                icon.classList.add('fas');    // Solid heart
+            }
+
+            // Update local storage with the non-null array of favorites
+            localStorage.setItem('restaurantFavorites', JSON.stringify(restaurantFavorites));
+        }
+
+        // Attach click event listener to each icon
+        favoriteIcons.forEach(icon => {
+            icon.addEventListener('click', toggleFavorite);
+
+            // Set initial state based on local storage
+            const restaurantId = icon.getAttribute('data-id');
+            const restaurantFavorites = JSON.parse(localStorage.getItem('restaurantFavorites')) || [];
+            if (restaurantFavorites.includes(restaurantId)) {
+                icon.classList.remove('far'); // Regular heart
+                icon.classList.add('fas');    // Solid heart
+            }
+        });
+    });
+
+ document.addEventListener('DOMContentLoaded', function () {
+        // Select all heart icons
+        const favoriteIcons = document.querySelectorAll('.favorite-icon i');
+
+        // Function to toggle favorite state
+        function toggleFavorite(event) {
+            const icon = event.target;
+            const destinationId = icon.getAttribute('data-id');
+            
+            // Get current favorites from local storage or initialize to empty array
+            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+            // Toggle favorite status
+            if (favorites.includes(destinationId)) {
+                // Remove destination from favorites
+                favorites = favorites.filter(id => id !== destinationId);
+                icon.classList.remove('fas'); // Solid heart
+                icon.classList.add('far');    // Regular heart
+            } else {
+                // Add destination to favorites
+                favorites.push(destinationId);
+                icon.classList.remove('far'); // Regular heart
+                icon.classList.add('fas');    // Solid heart
+            }
+
+            // Update local storage
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+        }
+
+        // Attach click event listener to each icon
+        favoriteIcons.forEach(icon => {
+            icon.addEventListener('click', toggleFavorite);
+
+            // Set initial state based on local storage
+            const destinationId = icon.getAttribute('data-id');
+            const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            if (favorites.includes(destinationId)) {
+                icon.classList.remove('far'); // Regular heart
+                icon.classList.add('fas');    // Solid heart
+            }
+        });
+    });
 // const images = ['./img/Sky_image.jpg', './img/blueSky.webp', './img/Cap_Spartel.png'];
 // let currentIndex = 0;
 // const imageElement = document.querySelector('.comment-image-img');

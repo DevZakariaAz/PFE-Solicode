@@ -1,6 +1,15 @@
 <?php
 include "./package/navbar.html";
 include "connection.php";
+session_start(); // Start the session
+
+// Check if the user session exists
+if (empty($_SESSION['user_id'])) {
+    // If no session exists, redirect to the login page
+    header('Location: login.php');
+    exit(); // Exit to prevent further script execution
+}
+
 
 if (isset($_GET['publicationid'])) {
     $publicationid = intval($_GET['publicationid']);

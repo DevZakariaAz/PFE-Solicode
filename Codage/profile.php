@@ -21,7 +21,6 @@ if (isset($_SESSION['user_id'])) {
 }
 ?>
 
-<!-- profile.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,6 +43,14 @@ if (isset($_SESSION['user_id'])) {
             border: 3px solid #fff; /* White border around the image */
             box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Drop shadow */
         }
+        .default-image-icon {
+            font-size: 5rem;
+            color: #888;
+        }
+        .upload-btn {
+            display: block;
+            margin-top: 10px;
+        }
         .profile-content {
             padding: 20px;
         }
@@ -63,7 +70,7 @@ if (isset($_SESSION['user_id'])) {
     </style>
 </head>
 <body>
-            <?php include "./package/NavBar.html"; ?>
+    <?php include "./package/NavBar.html"; ?>
 
     <div class="container mt-5">
         <div class="row justify-content-center">
@@ -73,26 +80,30 @@ if (isset($_SESSION['user_id'])) {
                         <h1 class="card-title">User Profile</h1>
                     </div>
                     <div class="card-body d-flex align-items-center">
-                        <!-- Left side with user image -->
-                        <?php if ($user && $user['coverimage']): ?>
-                            <div class="mr-4">
+                        <!-- Left side with user image or default icon -->
+                        <div class="mr-4">
+                            <?php if ($user && $user['coverimage']): ?>
                                 <img src="./img/<?php echo htmlspecialchars($user['coverimage']); ?>" class="profile-image" alt="User Image">
-                            </div>
-                        <?php endif; ?>
+                            <?php else: ?>
+                                <i class="fas fa-user-circle default-image-icon"></i>
+                            <?php endif; ?>
+                        </div>
                         <!-- Right side with user information -->
                         <div>
                             <p><strong>Username:</strong> <?php echo htmlspecialchars($user['username']); ?></p>
                             <p><strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?></p>
                         </div>
                     </div>
-                    <!-- Change Information button at bottom right -->
-                    <div class="card-footer">
-                        <a href="changeinformation.php?username=<?php echo urlencode($user['username']); ?>" class="btn btn-light change-info-btn">Change Information</a>
+                    <!-- Upload button if no image -->
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <a href="changeinformation.php?username=<?php echo urlencode($user['username']); ?>" class="btn btn-light">Change Information</a>
+                        <?php if (empty($user['coverimage'])): ?>
+                            <a href="upload_image.php" class="btn btn-secondary upload-btn">Upload Image</a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
-
 </html>

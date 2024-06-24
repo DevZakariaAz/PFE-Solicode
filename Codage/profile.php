@@ -97,7 +97,7 @@ if (isset($_SESSION['user_id'])) {
                     <!-- Upload button if no image -->
                     <div class="card-footer d-flex justify-content-between align-items-center">
                         <a href="changeinformation.php?username=<?php echo urlencode($user['username']); ?>" class="btn btn-light">Change Information</a>
-                        <?php if (empty($user['coverimage'])): ?>
+                        <?php if ($user['coverimage']): ?>
                             <a href="upload_image.php" class="btn btn-secondary upload-btn">Upload Image</a>
                         <?php endif; ?>
                     </div>

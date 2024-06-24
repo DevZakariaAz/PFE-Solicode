@@ -24,12 +24,11 @@ $topDestinations = fetchTopDestinations($conn);
     <!-- Font Awesome -->
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg">
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">
             <img src="./img/LogoTnagorroco.png" width="180" height="auto" class="d-inline-block align-top" alt="Logo">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -39,13 +38,20 @@ $topDestinations = fetchTopDestinations($conn);
                 <li class="nav-item"><a class="nav-link" href="Alldestination.php">Destination</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-                <?php if(isset($_SESSION['user_id'])): ?>
+                <?php if(isset($_SESSION['user_id']) || isset($_SESSION['admin_id'])): ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-user"></i> <?php echo htmlspecialchars($_SESSION['user_name']); ?>
+                            <i class="fas fa-user"></i>
+                            <?php 
+                            // Display the user's name or 'Admin' if it's an admin session
+                            echo isset($_SESSION['user_name']) ? htmlspecialchars($_SESSION['user_name']) : 'Admin';
+                            ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="profile.php">Profile</a>
+                            <?php if(isset($_SESSION['admin_id'])): ?>
+                                <a class="dropdown-item" href="admin_dashboard.php">Dashboard</a>
+                            <?php endif; ?>
                             <a class="dropdown-item" href="logout.php">Logout</a>
                         </div>
                     </li>
@@ -56,22 +62,22 @@ $topDestinations = fetchTopDestinations($conn);
         </div>
     </nav>
 
-
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-6 text-center text-md-left">
-                <h1 class="display-3">Explore the beauty of Tangier</h1>
-                <form class="form-inline justify-content-center justify-content-md-start mt-3">
-                    <input class="form-control mr-2" type="search" placeholder="Search destinations" aria-label="Search">
-                    <button class="btn btn-primary" type="submit">Explore</button>
-                </form>
-                <p class="mt-3">Still deciding where to go? <a href="#" class="head1">Explore destinations</a></p>
-            </div>
-            <div class="col-md-6 text-center">
-                <img src="./img/Tanger.png" class="img-fluid" width="600" alt="Tangier">
-            </div>
+   <!-- Main Content -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 text-center text-md-left">
+            <h1 class="display-3">Explore the beauty of Tangier</h1>
+            <form class="form-inline justify-content-center justify-content-md-start mt-3">
+                <input class="form-control mr-2" type="search" placeholder="Search destinations" aria-label="Search">
+                <button class="btn btn-primary" type="submit">Explore</button>
+            </form>
+            <p class="mt-3">Still deciding where to go? <a href="" class="head1">Explore destinations</a></p>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="./img/Tanger.png" class="img-fluid" width="600" alt="Tangier">
         </div>
     </div>
+</div>
     <br>
 <section class="featured-destination py-5">
     <div class="container">
@@ -304,31 +310,47 @@ $topDestinations = fetchTopDestinations($conn);
         </div>
     </section>
     
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Style/footer.css">
+    <!-- Include FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-...." crossorigin="anonymous" />
+    <title>Document</title>
+</head>
+
+<body>
     <footer class="footer">
         <div class="imagepattern2"></div>
         <div class="container">
-            
-                <div class="footer-logo">
+            <div class="footer-logo">
                 <img src="./img/LogoTnagorroco.png" alt="Logo" class="logo">
-                </div>
-                <div class="footer-nav">
-                    <a href="#">about</a>
-                    <a href="#">destination</a>
-                    <a href="#">blog</a>
-                    <a href="#">contact</a>
-                </div>
-                <div class="footer-social">
-                <a href="#">Instagram</a>
-                <a href="#">Youtube</a>
-                <a href="#">LinkedIn</a>
-                <a href="#">Twitter</a>
-                </div>
+            </div>
+            <div class="footer-nav">
+                <a href="HomePage.php">Home</a>
+                <a href="Alldestination.php">destination</a>
+                <a href="AllrRestaurants.php">Restaurants</a>
+                <a href="profile.php">Profil</a>
+            </div>
+            <div class="footer-social">
+                <!-- Replace text links with FontAwesome icons -->
+                <a href="https://www.instagram.com/ivar_happ/?next=%2F"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://www.youtube.com/channel/UCg5VEtIzb_q-xb_cldg0UeQ"><i class="fab fa-youtube"></i> Youtube</a>
+                <a href="https://www.linkedin.com/in/zakaria-azizi-082b8927a/"><i class="fab fa-linkedin"></i> Linkedin</a>
+                <a href="https://x.com/Za14Zakaria"><i class="fab fa-twitter"></i> Twitter</a>
+            </div>
             <div class="footer-credit">
                 <p>&copy; All Rights Reserved By <strong>Tangorroco</strong></p>
             </div>
         </div>
     </footer>
+</body>
+
+</html>
 
 
     <!-- Bootstrap JS, Popper.js, and jQuery -->

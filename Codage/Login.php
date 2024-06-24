@@ -1,3 +1,63 @@
+<?php
+session_start();
+include 'connection.php'; // Include the database connection file
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Capture form data
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    try {
+        // Check if the credentials match a user
+        $query = "SELECT * FROM user WHERE email = :email";
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+
+        if ($stmt->rowCount() == 1) {
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($password == $user['password']) { // For simplicity, this example uses plain text passwords, but you should use password_hash() in production
+                // Set session variables for user
+                $_SESSION['user_id'] = $user['userid'];
+                $_SESSION['user_name'] = $user['username']; // Store the user's name in the session
+                $_SESSION['user_email'] = $user['email'];
+                // Redirect to the main page
+                header("Location: HomePage.php");
+                exit;
+            } else {
+                $error_message = "Invalid password.";
+            }
+        } else {
+            // Check if the credentials match an admin
+            $query = "SELECT * FROM admin WHERE email = :email";
+            $stmt = $conn->prepare($query);
+            $stmt->bindParam(':email', $email);
+            $stmt->execute();
+
+            if ($stmt->rowCount() == 1) {
+                $admin = $stmt->fetch(PDO::FETCH_ASSOC);
+                if ($password == $admin['password']) { // For simplicity, this example uses plain text passwords, but you should use password_hash() in production
+                    // Set session variables for admin
+                    $_SESSION['admin_id'] = $admin['adminid'];
+                    $_SESSION['admin_username'] = $admin['username']; // Store the admin's username in the session
+                    $_SESSION['admin_email'] = $admin['email'];
+                    // Redirect to the admin dashboard
+                    header("Location: admin_dashboard.php");
+                    exit;
+                } else {
+                    $error_message = "Invalid password.";
+                }
+            } else {
+                $error_message = "No user or admin found with that email.";
+            }
+        }
+
+    } catch (PDOException $e) {
+        echo "Database query error: " . $e->getMessage();
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +82,9 @@
             <div class="right-side">
                 <form class="login-form" action="login.php" method="POST">
                     <h2>Login</h2>
+                    <?php if (isset($error_message)): ?>
+                        <div class="alert alert-danger"><?php echo $error_message; ?></div>
+                    <?php endif; ?>
                     <div class="form-group">
                         <label for="email"><i class="fas fa-envelope"></i></label>
                         <input type="email" id="email" name="email" placeholder="Your email" required>
@@ -37,40 +100,4 @@
         </div>
     </section>
 </body>
-</html><?php
-session_start();
-include 'connection.php'; // Include the database connection file
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Capture form data
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    try {
-        // Prepare and execute query to get the user
-        $query = "SELECT * FROM user WHERE email = :email";
-        $stmt = $conn->prepare($query);
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
-
-        if ($stmt->rowCount() == 1) {
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
-            if ($password == $user['password']) { // For simplicity, this example uses plain text passwords, but you should use password_hash() in production
-                // Set session variables
-                $_SESSION['user_id'] = $user['userid'];
-                $_SESSION['user_name'] = $user['username']; // Store the user's name in the session
-                $_SESSION['user_email'] = $user['email'];
-                // Redirect to the main page
-                header("Location: HomePage.php");
-                exit;
-            } else {
-                echo "Invalid password.";
-            }
-        } else {
-            echo "No user found with that email.";
-        }
-    } catch (PDOException $e) {
-        echo "Database query error: " . $e->getMessage();
-    }
-}
-?>
+</html>

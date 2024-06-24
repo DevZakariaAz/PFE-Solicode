@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <label for="confirm_password">Confirm New Password</label>
                                 <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                             <a href="profile.php" class="btn btn-secondary">Cancel</a>
                         </form>
 

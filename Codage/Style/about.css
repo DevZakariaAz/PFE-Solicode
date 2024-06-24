@@ -410,3 +410,7 @@ body {
     color: red;
     /* Red color for the heart icon when active */
 }
+ .liked {
+     color: red;
+     /* Change color to red when liked */
+ }

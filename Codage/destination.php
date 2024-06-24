@@ -62,6 +62,7 @@ $reviews = fetchReviews($conn, $destination_id);
     <title><?php echo htmlspecialchars($destination['titre']); ?> - Destination</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./Style/indexPage.css">
+    <link rel="stylesheet" href="./Style/about.css">
     <link rel="stylesheet" href="./Style/destination.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
         integrity="sha384-Z65FFH9kCk3Upsh6zVeJT6zxy5bRB+8SM6RvDhhOdYJbCLs4qybrt1wrj5d9UJGh" crossorigin="anonymous">
@@ -127,6 +128,30 @@ $reviews = fetchReviews($conn, $destination_id);
             </div>
         </div>
     </section>
+    <section class="steps-section">
+    <h2>Discovering Inspiring Destinations</h2>
+    <div class="steps-container">
+        <div class="step">
+            <div class="step-icon"><i class="fas fa-map-marked-alt"></i></div>
+            <div class="step-details">
+                <p>Embark on a journey of discovery to captivating destinations around the globe. Explore hidden cultural gems and immerse yourself in diverse communities.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-icon"><i class="fas fa-compass"></i></div>
+            <div class="step-details">
+                <p>Embrace the thrill of exploring historical landmarks and picturesque vistas, uncovering unique stories and traditions.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-icon"><i class="fas fa-camera"></i></div>
+            <div class="step-details">
+                <p>Capture unforgettable moments and broaden your horizons through vibrant cultures and meaningful travel experiences.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
     <section class="review-section">
         <h2>Reviews</h2>
         <div id="reviews-container">
@@ -158,10 +183,11 @@ $reviews = fetchReviews($conn, $destination_id);
             <?php endforeach; ?>
         </div>
     </section>
+            <?php include "./package/footer.html"; ?>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+   
+</body>
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-
 </html>

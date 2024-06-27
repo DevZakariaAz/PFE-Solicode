@@ -48,9 +48,9 @@ $topDestinations = fetchTopDestinations($conn);
                             ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="profile.php">Profile</a>
+                            <a class="dropdown-item" href="./User/profile.php">Profile</a>
                             <?php if(isset($_SESSION['admin_id'])): ?>
-                                <a class="dropdown-item" href="admin_dashboard.php">Dashboard</a>
+                                <a class="dropdown-item" href="./Admin/admin_dashboard.php">Dashboard</a>
                             <?php endif; ?>
                             <a class="dropdown-item" href="logout.php">Logout</a>
                         </div>
